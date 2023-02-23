@@ -2,8 +2,8 @@ const Shopinglist = require("../models/Shopinglist");
 
 const getAllShopinglist = async (req, res) => {
     try {
-        const jobs = await Job.find();
-        res.status(200).json({ jobs });
+        const shopinglist = await Shopinglist.find();
+        res.status(200).json({ shopinglist });
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
