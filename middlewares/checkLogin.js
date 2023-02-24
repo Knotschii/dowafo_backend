@@ -8,7 +8,7 @@ const checkLogin = async (req, res, next) => {
     if (!user) {
       return res
         .status(404)
-        .send("No useryet, please sign up!");
+        .send("No user yet, please sign up!");
     }
     
     req.user = user;
