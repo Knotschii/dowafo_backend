@@ -34,11 +34,30 @@ const deleteWarehouse = async (req, res) => {
 };
 
 const getSingleWarehouse = async (req, res) => {
-  res.send("hello test");
+  const { id } = req.params;
+  try {
+    const singleWarehouse = await Warehouse.findById(id);
+    res.status(200).json(singleWarehouse);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: err.message });
+  }
 };
 
-const addItemToWarehouse = async (req, res) => {
-  res.send("hello test");
+const addItem = async (req, res) => {
+  const { listid } = req.params;
+  const { id } = req.body;
+
+  try {
+    const updatedWarehouse = await Warehouse.findByIdAndUpdate(
+      listid,
+      { $push: { items: id } },
+      { new: true }
+    ).exec();
+    res.status(200).json(updatedWarehouse);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
 };
 
 module.exports = {
@@ -47,5 +66,5 @@ module.exports = {
   updateWarehouse,
   deleteWarehouse,
   getSingleWarehouse,
-  addItemToWarehouse,
+  addItem,
 };

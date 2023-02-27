@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ShopinglistSchema = new Schema({
-  itemName: {
-    type: String,
-    required: true,
-  },
-  itemCount: {
-    type: Number,
-    required: true,
-  },
+  // itemName: {
+  //   type: String,
+  //   required: true,
+  // },
+  // itemCount: {
+  //   type: Number,
+  //   required: true,
+  // },
   shopinglistName: {
     type: String,
     required: true,
@@ -19,6 +19,7 @@ const ShopinglistSchema = new Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "items",
+      default: [],
     },
   ],
 });
