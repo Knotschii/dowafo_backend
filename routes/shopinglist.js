@@ -1,24 +1,35 @@
-const express = require("express")
+const express = require("express");
 
 const {
-    getAllShopinglist,
-    createShopinglist,
-    deleteShopinglist,
-    updateShopinglist,
-    getSingleShopinglist
-    
-} = require("../controllers/shopinglist")
+  getAllShopinglist,
+  createShopinglist,
+  deleteShopinglist,
+  updateShopinglist,
+  getSingleShopinglist,
+  addItem,
+  buyItem,
+} = require("../controllers/shopinglist");
 
 const shopinglistRouter = express.Router();
 
-shopinglistRouter.get("/shopinglist", getAllShopinglist);
+shopinglistRouter
+  .route("/shopinglist")
+  .get(getAllShopinglist)
+  .post(createShopinglist);
+shopinglistRouter
+  .route("/shopinglist/:id")
+  .get(getSingleShopinglist)
+  .delete(deleteShopinglist)
+  .put(updateShopinglist);
 
-shopinglistRouter.post("/createshopinglist", createShopinglist);
+shopinglistRouter.post("/additem/:listid", addItem);
 
-shopinglistRouter.delete("/deleteshopinglist/:id", deleteShopinglist);
+shopinglistRouter.put("/shoppinglist/:listid/moveto/:warehouseid", buyItem);
 
-shopinglistRouter.put("/updateshopinglist/:id", updateShopinglist);
-
-shopinglistRouter.get("/singleshopinglist/:id", getSingleShopinglist);
+// shopinglistRouter.get("/shopinglist", getAllShopinglist);
+// shopinglistRouter.post("/createshopinglist", createShopinglist);
+// shopinglistRouter.delete("/deleteshopinglist/:id", deleteShopinglist);
+// shopinglistRouter.put("/updateshopinglist/:id", updateShopinglist);
+// shopinglistRouter.get("/singleshopinglist/:id", getSingleShopinglist);
 
 module.exports = shopinglistRouter;
