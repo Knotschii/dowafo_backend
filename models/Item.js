@@ -6,9 +6,11 @@ const Item = new Schema({
   openedItem: {
     type: Boolean,
     required: true,
+    default: false,
   },
   openDate: {
     type: Date,
+    default: "",
   },
   itemName: {
     type: String,
