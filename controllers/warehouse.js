@@ -36,7 +36,7 @@ const deleteWarehouse = async (req, res) => {
 const getSingleWarehouse = async (req, res) => {
   const { id } = req.params;
   try {
-    const singleWarehouse = await Warehouse.findById(id);
+    const singleWarehouse = await Warehouse.findById(id).populate("items");
     res.status(200).json(singleWarehouse);
   } catch (err) {
     console.error(err);

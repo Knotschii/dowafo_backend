@@ -16,6 +16,8 @@ shopinglistRouter
   .route("/shopinglist")
   .get(getAllShopinglist)
   .post(createShopinglist);
+
+  
 shopinglistRouter
   .route("/shopinglist/:id")
   .get(getSingleShopinglist)

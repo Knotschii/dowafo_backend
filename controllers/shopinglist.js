@@ -1,5 +1,6 @@
 const Shopinglist = require("../models/Shopinglist");
 const Warehouse = require("../models/Warehouse");
+const Item = require("../models/Item");
 
 const getAllShopinglist = async (req, res) => {
   try {
@@ -64,12 +65,20 @@ const getSingleShopinglist = async (req, res) => {
 //add a new item to an existing list
 const addItem = async (req, res) => {
   const { listid } = req.params;
-  const { id } = req.body;
+  const { openedItem, openDate, itemName, itemCount, expDate } = req.body;
 
   try {
+    //1. create a new item
+    const newItem = await Item.create({
+      openedItem,
+      openDate,
+      itemName,
+      itemCount,
+      expDate,
+    });
     const updatedShopinglist = await Shopinglist.findByIdAndUpdate(
       listid,
-      { $push: { items: id } },
+      { $push: { items: newItem._id } },
       { new: true }
     ).exec();
     res.status(200).json(updatedShopinglist);
