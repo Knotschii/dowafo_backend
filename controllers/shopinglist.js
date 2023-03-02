@@ -27,7 +27,7 @@ const createShopinglist = async (req, res) => {
 const deleteShopinglist = async (req, res) => {
   const { id } = req.params;
   try {
-    const deleted = await Job.findByIdAndDelete(id);
+    const deleted = await Shopinglist.findByIdAndDelete(id);
     if (deleted) {
       return res.status(200).send("Shopinglist deleted");
     }
