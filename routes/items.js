@@ -15,6 +15,6 @@ itemsRouter.route("/items").get(getItems).post(createItem);
 
 itemsRouter.route("/items/:id").get(getItem).put(updateItem).delete(deleteItem);
 
-// itemsRouter.route("/items/:id/addToShoppingList").post(addToShoppingList);
+itemsRouter.route("shopinglist/:id/items/:id/addToShoppingList").post(addToShoppingList);
 
 module.exports = itemsRouter;
