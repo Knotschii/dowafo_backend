@@ -43,7 +43,21 @@ const getItem = async (req, res) => {
 
 const updateItem = async (req, res) => {};
 
-const deleteItem = async (req, res) => {};
+const deleteItem = async (req, res) => {
+  //itemid
+  const { id } = req.params;
+  const { listid } = req.body;
+  try {
+    const deletedItem = await Item.findByIdAndDelete(id);
+    const updatedShoppingList = await Shopinglist.findByIdAndUpdate(listid, {
+      $pull: { items: id },
+    }).exec();
+    res.status(200).send("Deleted item from shopping list");
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send(err.message);
+  }
+};
 
 const addToShoppingList = async (req, res) => {
   const { id } = req.params;

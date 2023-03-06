@@ -22,6 +22,7 @@ const Item = new Schema({
   },
   expDate: {
     type: Date,
+    default: "",
   },
 });
 
